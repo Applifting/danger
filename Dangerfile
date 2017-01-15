@@ -26,7 +26,7 @@ end
 
 if defined? junit
   junit.parse 'rspec.xml'
-  junit.headers = [:name, :file]
+  # junit.headers = [:name, :file]
   junit.report
 else
   warn('JUnit plugin not set')
