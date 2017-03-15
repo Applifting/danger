@@ -6,6 +6,9 @@ modified_and_added_files = git.modified_files + git.added_files
 # including in a project's CHANGELOG for example
 # declared_trivial = github.pr_title.include? "#trivial"
 
+# To run locally run command:
+#   DANGER_GITHUB_API_TOKEN="YOUR_API_TOKEN" danger local
+
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
@@ -47,7 +50,7 @@ end
   # --------------------------------------------------------------------------------------------------------------------
   # If forgotten debuggers
   # --------------------------------------------------------------------------------------------------------------------
-  if contents.include?('byebug') || contents.include?('binding.pry')
+  if file.in?(%w(Gemfile Gemfile.lock)) (contents.include?('byebug') || contents.include?('binding.pry'))
     fail("Debugger forgotten in code!")
   end
 
@@ -91,7 +94,7 @@ if defined? rubocop
   # github.api.create_pull_request_comment()
   rubocop.lint
 else
-  warn('Rubocop plugin not set')
+  warn("Rubocop plugin not set. Add `gem 'danger-rubocop'` to your gemfile.")
 end
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -101,7 +104,7 @@ end
 if defined? simplecov
   simplecov.report('coverage/coverage.json')
 else
-  warn('Simplecov plugin not set')
+  warn("Simplecov plugin not set. Add `gem 'danger-simplecov_json'` to your gemfile.")
 end
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -113,5 +116,5 @@ if defined? junit
   # junit.headers = [:name, :file]
   # junit.report
 else
-  warn('JUnit plugin not set')
+  warn("JUnit plugin not set. Add `gem 'danger-junit'` to your gemfile.")
 end
