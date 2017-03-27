@@ -50,7 +50,7 @@ end
   # --------------------------------------------------------------------------------------------------------------------
   # If forgotten debuggers
   # --------------------------------------------------------------------------------------------------------------------
-  if file.in?(%w(Gemfile Gemfile.lock)) (contents.include?('byebug') || contents.include?('binding.pry'))
+  if file.in?(%w(Gemfile Gemfile.lock)) && (contents.include?('byebug') || contents.include?('binding.pry'))
     fail("Debugger forgotten in code!")
   end
 
