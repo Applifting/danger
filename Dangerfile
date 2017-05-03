@@ -57,9 +57,9 @@ end
   # --------------------------------------------------------------------------------------------------------------------
   # If forgotten puts
   # --------------------------------------------------------------------------------------------------------------------
-  # if contents.include?('puts ') || contents.include?('p ') || contents.include?('ap ')
-    # warn("Console puts forgotten in source code.")
-  # end
+  if contents.include?('puts ') || contents.include?('p ') || contents.include?('ap ')
+    warn("Console puts forgotten in source code.")
+  end
 
   # --------------------------------------------------------------------------------------------------------------------
   # If 'if true' or 'if false'
